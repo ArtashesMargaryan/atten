@@ -1,96 +1,103 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
+import React, { useState } from "react";
+import ProductCard from "../component/product";
 import Header from "../component/header";
-// import { FaHeart, FaRegHeart, FaInfoCircle } from "react-icons/fa"; // Uncomment if using react-icons
+import Footer from "../component/footer";
 
-const sampleProducts = [
-  {
-    id: 1,
-    name: "Elite Sausage",
-    image: "/3301983030.jpg",
-    price: 1500,
-    info: "Premium quality sausage made with natural spices.",
-  },
-  {
-    id: 2,
-    name: "Frozen Cutlet",
-    image: "/3301983030.jpg",
-    price: 1200,
-    info: "Easy to cook semi-finished meat cutlet.",
-  },
-  {
-    id: 3,
-    name: "Frozen Cutlet",
-    image: "/3301983030.jpg",
-    price: 1800,
-    info: "Easy to cook semi-finished meat cutlet.",
-  },
-  {
-    id: 4,
-    name: "Frozen Cutlet",
-    image: "/3301983030.jpg",
-    price: 3200,
-    info: "Easy to cook semi-finished meat cutlet.",
-  },
-];
+const ProductsPage = () => {
+  const [priceFrom, setPriceFrom] = useState(0);
+  const [priceTo, setPriceTo] = useState(100);
 
-export default function ProductsPage() {
+  const product = {
+    image: "/3301771763.jpg",
+    alt: "Beef Chuck Roast",
+    rating: 4,
+  };
+
   return (
     <div>
       <Header />
-      <main className="min-h-screen bg-gray-50 p-6">
-        <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">
-          Ապրանքներ
-        </h1>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {sampleProducts.map((product) => (
-            <div
-              key={product.id}
-              className="relative border rounded-2xl shadow-sm p-4 bg-white hover:shadow-md transition duration-300"
-            >
-              {/* Like & Info Buttons */}
-              <div className="absolute top-3 right-3 flex items-center gap-3 z-10">
-                <button className="focus:outline-none"></button>
-                <div className="relative"></div>
-              </div>
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        {/* Category and Subcategory Header */}
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold">Meat & Poultry</h1>
+          <p className="text-gray-600">Beef / Chuck Roast</p>
+        </div>
 
-              <Image
-                src={product.image}
-                alt={product.name}
-                width={300}
-                height={200}
-                className="w-full h-48 object-cover rounded-lg mb-4"
-              />
+        <div className="flex">
+          {/* Sidebar Filters */}
+          <aside className="w-1/4 pr-6 space-y-6">
+            <div>
+              <h2 className="text-lg font-semibold mb-2">Categories</h2>
+              <ul className="space-y-1 text-gray-700">
+                <li>
+                  <input type="checkbox" /> Beef
+                </li>
+                <li>
+                  <input type="checkbox" /> Pork
+                </li>
+                <li>
+                  <input type="checkbox" /> Chicken
+                </li>
+                <li>
+                  <input type="checkbox" /> Sausages
+                </li>
+              </ul>
+            </div>
 
-              {/* Product Info */}
-              <h2 className="text-xl font-semibold text-gray-800 mb-1">
-                {product.name}
-              </h2>
-              <p className="text-gray-600 text-lg mb-3">
-                {product.price.toLocaleString()} ֏
-              </p>
-
-              {/* Actions */}
+            <div>
+              <h2 className="text-lg font-semibold mb-2">Price Range</h2>
               <div className="flex items-center gap-2">
-                <button
-                  onClick={() => {}}
-                  className="px-3 py-1 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
-                >
-                  −
-                </button>
-                <span className="w-6 text-center"></span>
-                <button className="px-3 py-1 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"></button>
-                <button className="ml-auto bg-red-600 text-white px-4 py-1 rounded hover:bg-red-700">
-                  Ավելացնել զամբյուղում
-                </button>
+                <input
+                  type="number"
+                  value={priceFrom}
+                  onChange={(e) => setPriceFrom(Number(e.target.value))}
+                  placeholder="From"
+                  className="w-1/2 px-2 py-1 border rounded text-sm"
+                />
+                <input
+                  type="number"
+                  value={priceTo}
+                  onChange={(e) => setPriceTo(Number(e.target.value))}
+                  placeholder="To"
+                  className="w-1/2 px-2 py-1 border rounded text-sm"
+                />
+              </div>
+              <div className="text-sm text-gray-600 mt-1">
+                ${priceFrom} - ${priceTo}
               </div>
             </div>
-          ))}
+
+            <div>
+              <h2 className="text-lg font-semibold mb-2">More Filters</h2>
+              <ul className="space-y-1 text-gray-700">
+                <li>
+                  <input type="checkbox" /> USDA Choice
+                </li>
+                <li>
+                  <input type="checkbox" /> Organic
+                </li>
+                <li>
+                  <input type="checkbox" /> Grass-fed
+                </li>
+              </ul>
+            </div>
+          </aside>
+
+          {/* Product Grid */}
+          <section className="w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <ProductCard product={product} />
+            <ProductCard product={product} />
+            <ProductCard product={product} />
+            <ProductCard product={product} />
+          </section>
         </div>
-      </main>
+      </div>
+      <Footer />
     </div>
   );
-}
+};
+
+export default ProductsPage;

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Header from "../component/header";
+import Footer from "../component/footer";
 
 interface Product {
   id: number;
@@ -73,6 +74,7 @@ export default function BasketPage() {
           </div>
         )}
       </main>
+      <Footer />
     </div>
   );
 }

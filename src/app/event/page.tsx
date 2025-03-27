@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Header from "../component/header";
+import Footer from "../component/footer";
 
 const events = [
   {
@@ -125,6 +126,7 @@ export default function EventPage() {
           )}
         </section>
       </main>
+      <Footer />
     </div>
   );
 }

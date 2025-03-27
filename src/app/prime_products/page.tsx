@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Header from "../component/header";
+import Footer from "../component/footer";
 
 export default function Prim() {
   return (
@@ -38,6 +39,7 @@ export default function Prim() {
           <p>pentagon@gmail.com</p>
         </section>
       </main>
+      <Footer />
     </div>
   );
 }

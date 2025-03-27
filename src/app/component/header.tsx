@@ -25,6 +25,7 @@ export default function Header() {
 
   const navLinks = [
     { name: "Գլխավոր", href: "/" },
+    { name: "Մեր տեսականին", href: "/products" },
     { name: "Աթենք փրայմ", href: "/prime_products" },
     { name: "Իրադարձություններ", href: "/event" },
     { name: "Կապ", href: "/contact" },
@@ -58,46 +59,6 @@ export default function Header() {
                 {link.name}
               </Link>
             ))}
-
-            {/* Dropdown */}
-            <div className="relative group">
-              <span className="cursor-pointer text-gray-700 hover:text-red-600 font-medium">
-                <Link
-                  href={"/products"}
-                  className={`block px-4 py-2 text-sm text-gray-800 hover:text-red-600`}
-                >
-                  {" "}
-                  Մեր տեսականին
-                </Link>
-              </span>
-              {/* <div className="absolute top-full left-0 hidden group-hover:block bg-white border rounded shadow-md z-50 mt-2 min-w-[200px]">
-                {categories.map((cat, i) => (
-                  <div key={i} className="group relative">
-                    <Link
-                      href={cat.href}
-                      className={`block px-4 py-2 text-sm text-gray-800 hover:text-red-600 ${
-                        isActive(cat.href) ? "text-red-600 font-semibold" : ""
-                      }`}
-                    >
-                      {cat.name}
-                    </Link>
-                    {cat.sub.length > 0 && (
-                      <div className="absolute left-full top-0 mt-0 bg-white border rounded shadow-lg min-w-[160px] hidden group-hover:block">
-                        {cat.sub.map((subItem, j) => (
-                          <Link
-                            key={j}
-                            href={`${cat.href}/${subItem}`}
-                            className="block px-4 py-2 text-sm text-gray-800 hover:text-red-600"
-                          >
-                            {subItem}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div> */}
-            </div>
           </nav>
 
           {/* Basket + Mobile Toggle */}

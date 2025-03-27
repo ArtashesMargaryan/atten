@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Header from "../component/header";
+import Footer from "../component/footer";
 
 export default function ContactUsPage() {
   return (
@@ -100,6 +101,7 @@ export default function ContactUsPage() {
           </div>
         </section>
       </main>
+      <Footer />
     </div>
   );
 }
