@@ -33,6 +33,24 @@ export default function Header() {
 
   const isActive = (href: string) => pathname === href;
 
+  const [selectedLang, setSelectedLang] = useState("am");
+  const [showLangDropdown, setShowLangDropdown] = useState(false);
+
+  const languages: { [key: string]: { name: string; flag: string } } = {
+    am: { name: "Հայերեն", flag: "/icons/64px-Flag_of_Armenia.svg.png" },
+    en: {
+      name: "English",
+      flag: "/icons/64px-Flag_of_the_United_Kingdom_(3-5).svg.png",
+    },
+    ru: { name: "Русский", flag: "/icons/64px-Flag_of_Russia.svg.webp" },
+  };
+
+  const toggleLanguage = (lang: string) => {
+    setSelectedLang(lang);
+    setShowLangDropdown(false);
+    // Optional: apply i18n language switch logic here
+  };
+
   return (
     <div>
       <header className="w-full bg-white shadow-sm py-4 px-4 sm:px-6 md:px-12">
@@ -61,13 +79,16 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Basket + Mobile Toggle */}
+          {/* Basket + Language + Mobile Toggle */}
           <div className="flex items-center space-x-4">
+            {/* Search */}
             <input
               type="text"
               placeholder="Որոնել..."
               className="hidden sm:block px-3 py-1.5 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-red-500"
             />
+
+            {/* Basket */}
             <Link href="/myBasket">
               <button className="relative" type="submit">
                 <Image
@@ -81,6 +102,44 @@ export default function Header() {
                 </span>
               </button>
             </Link>
+
+            {/* Language Selector */}
+            <div className="relative">
+              <button
+                onClick={() => setShowLangDropdown(!showLangDropdown)}
+                className="flex items-center space-x-1"
+              >
+                <Image
+                  src={languages[selectedLang].flag}
+                  alt={languages[selectedLang].name}
+                  width={24}
+                  height={16}
+                />
+              </button>
+              {showLangDropdown && (
+                <div className="absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded-md shadow-md z-50">
+                  {Object.entries(languages).map(([key, lang]) =>
+                    key !== selectedLang ? (
+                      <button
+                        key={key}
+                        onClick={() => toggleLanguage(key)}
+                        className="flex items-center px-3 py-2 hover:bg-gray-100 w-full"
+                      >
+                        <Image
+                          src={lang.flag}
+                          alt={lang.name}
+                          width={24}
+                          height={16}
+                        />
+                        <span className="ml-2 text-sm">{lang.name}</span>
+                      </button>
+                    ) : null
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Mobile Menu Button */}
             <button
               className="md:hidden text-2xl"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
