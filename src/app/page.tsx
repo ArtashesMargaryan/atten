@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "./component/header";
 import Footer from "./component/footer";
+import YandexMap from "./component/maps";
 
 export default function Home() {
   return (
@@ -67,6 +68,7 @@ export default function Home() {
           ))}
         </div>
       </section>
+      <YandexMap />
       <Footer />
     </main>
   );

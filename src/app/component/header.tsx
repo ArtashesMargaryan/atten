@@ -81,6 +81,15 @@ export default function Header() {
 
           {/* Basket + Language + Mobile Toggle */}
           <div className="flex items-center space-x-4">
+            <Link href={"/"}>
+              <Image
+                src="/icons/placeholder.png"
+                alt="Map"
+                width={20}
+                height={20}
+                className="mr-2"
+              />
+            </Link>
             {/* Search */}
             <input
               type="text"
@@ -89,7 +98,7 @@ export default function Header() {
             />
 
             {/* Basket */}
-            <Link href="/myBasket">
+            <Link href="/basket">
               <button className="relative" type="submit">
                 <Image
                   src="/shopping-basket.png"
@@ -112,7 +121,7 @@ export default function Header() {
                 <Image
                   src={languages[selectedLang].flag}
                   alt={languages[selectedLang].name}
-                  width={24}
+                  width={30}
                   height={16}
                 />
               </button>
